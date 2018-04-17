@@ -6,21 +6,28 @@
 	<title>Learn Your Locks</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
+
 <body>
 	<header role="banner" id="banner"><h1> Learn Your Locks</h1></header>
 	<main role="main">
 		<form class="js-search-bar"> 
 			<label for="search-query">
-	        <input class="js-search-query" type=text placeholder="How to cornrow">
-	        <!-- <button class="submit-btn" type="submit">Submit</button> -->
-	        <input class="Button" type="image" src="https://tf-assets-prod.s3.amazonaws.com/tf-curric/WEB-DEV-001/2.4.6_challenge_design_to_code/magnifying-glass.png" alt="search" height="25" width="25"role="button"> 
-		</form>
+	        <input class="js-search-query" type=text placeholder="Search">
+	        <input class="Button" type="image" src="https://tf-assets-prod.s3.amazonaws.com/tf-curric/WEB-DEV-001/2.4.6_challenge_design_to_code/magnifying-glass.png" alt="search" height="25" width="25" role="button"> 
+	 	</form>
 	</main>
+	
 	<section role="region" class="results">
 		<h2>The one stop shop for everything hair related!</h2>
 	</section>
-	<div id="player"></div>
+	
+	<section role="region" id="ebay-results">
+	  <h2>Try finding your products here!</h2>
+	  <div id="results"></div>
+	</section>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="index.js"></script>
+		
 </body>
 </html>

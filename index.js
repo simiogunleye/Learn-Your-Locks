@@ -1,5 +1,10 @@
+// YouTube search endpoint
 const YouTube_Search_URL = 'https://www.googleapis.com/youtube/v3/search';
 
+var url = "";
+var query = "";
+
+// request data from youtube api
 
 function getDataYouTubeApi(searchTerm, callback){
 	const query = {
@@ -7,80 +12,72 @@ function getDataYouTubeApi(searchTerm, callback){
 		key: 'AIzaSyB5ILOkqbgUizikrpFI-Z6lQSE1aB6FZP4',
 		q: searchTerm,
 		maxResults: 4,
-		//order: 'viewCount',
 	}
 	$.getJSON(YouTube_Search_URL, query, callback)
+
 }
 
+// display youtube data from the api
 
 function displayYouTubeSearchData(data) {
-	console.log(data)
 	const resultsArray = data.items.map((item, index) => `<ul>
-  	<li class="thumbnail">${item.snippet.title}"</li><br>
-  	<img src='${item.snippet.thumbnails.medium.url}'>
-  	<div id="player-${index}"></div>
+  	<li class="thumbnail">${item.snippet.title}"</li><br>  	
+  	<iframe width="420" height="315"
+	src="https://www.youtube.com/embed/${item.id.videoId}">
+	</iframe>
   	</ul>`);
   	$('.results').html(resultsArray);
 }
 
-
-
+// event handler to to handle the search for youtube and ebay
 
 function submitSearch() {
 	$(".js-search-bar").submit(function(event) {
+
 		event.preventDefault();
-		const query = $('.js-search-query').val();
+		 query = $('.js-search-query').val();
 		$('.js-search-query').val('');
 		getDataYouTubeApi(query, displayYouTubeSearchData);
+// Construct the request for ebay finding api with production key
+
+ url = "https://svcs.ebay.com/services/search/FindingService/v1";
+    url += "?OPERATION-NAME=findItemsByKeywords";
+    url += "&SERVICE-VERSION=1.0.0";
+    url += "&SECURITY-APPNAME=SImisolu-learnyou-PRD-8786e9946-4a82e600";
+    url += "&GLOBAL-ID=EBAY-US";
+    url += "&RESPONSE-DATA-FORMAT=JSON";
+    url += "&callback=_cb_findItemsByKeywords";
+    url += "&REST-PAYLOAD";
+    url += `&keywords=${query}`;
+    url += "&paginationInput.entriesPerPage=5";
+// Submit the request     
+	s=document.createElement('script'); // create script element
+	s.src= url;
+	document.body.appendChild(s);
+
 	});
 }
 
-
-// 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player-0', {
-          height: '390',
-          width: '640',
-          //I'm not sure what value to put for the videoID
-          videoId: 'searchTerm',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
+// Parse the response from ebay finding api and build an HTML table to display ebay search results
+function _cb_findItemsByKeywords(root) {
+ 
+  var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
+  var html = [];
+  html.push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
+  for (var i = 0; i < items.length; ++i) {
+    var item     = items[i];
+    var title    = item.title;
+    var pic      = item.galleryURL;
+    var viewitem = item.viewItemURL;
+    if (null != title && null != viewitem) {
+      html.push('<tr><td>' + '<img src="' + pic + '" border="0">' + '</td>' +
+      '<td><a href="' + viewitem + '" target="_blank">' + title + '</a></td></tr>');
+    }
+  }
+  html.push('</tbody></table>');
+  document.getElementById("results").innerHTML = html.join("");
+}  
 
 
 
-
-
-
-
-
-
-$(submitSearch)
+$(submitSearch);
