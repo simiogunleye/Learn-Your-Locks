@@ -26,7 +26,7 @@ function displayYouTubeSearchData(data) {
 	src="https://www.youtube.com/embed/${item.id.videoId}">
 	</iframe>
   	</ul>`);
-  	$('.results').html(resultsArray);
+  	$('.youtube-results').html(resultsArray);
 }
 
 // event handler to to handle the search for youtube and ebay
