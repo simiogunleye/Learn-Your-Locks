@@ -20,11 +20,12 @@ function getDataYouTubeApi(searchTerm, callback){
 // display youtube data from the api
 
 function displayYouTubeSearchData(data) {
-	const resultsArray = data.items.map((item, index) => `<ul>
-  	<li class="thumbnail">${item.snippet.title}"</li><br>  	
-  	<iframe width="420" height="315"
-	src="https://www.youtube.com/embed/${item.id.videoId}">
-	</iframe>
+	const resultsArray = data.items.map((item, index) => 
+    `<ul>
+  	<li class="thumbnail">${item.snippet.title}"<br>  	
+  	<iframe title="${item.snippet.title}" width="420" height="315"
+	  src="https://www.youtube.com/embed/${item.id.videoId}">
+	  </iframe></li>
   	</ul>`);
   	$('.youtube-results').html(resultsArray);
 }
@@ -36,7 +37,8 @@ function submitSearch() {
 
 		event.preventDefault();
 		 query = $('.js-search-query').val();
-		$('.js-search-query').val('');
+		//$('.js-search-query').val('');
+    $('.description').hide()
 		getDataYouTubeApi(query, displayYouTubeSearchData);
 // Construct the request for ebay finding api with production key
 
@@ -61,16 +63,16 @@ function submitSearch() {
 // Parse the response from ebay finding api and build an HTML table to display ebay search results
 function _cb_findItemsByKeywords(root) {
  
-  var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
+ var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
   var html = [];
-  html.push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
+  html.push('<table width="100%" border="0" cellspacing="25" cellpadding="3"><tbody>');
   for (var i = 0; i < items.length; ++i) {
     var item     = items[i];
     var title    = item.title;
     var pic      = item.galleryURL;
     var viewitem = item.viewItemURL;
     if (null != title && null != viewitem) {
-      html.push('<tr><td>' + '<img src="' + pic + '" border="0">' + '</td>' +
+      html.push('<tr><td>' + '<img src="' + pic + '" border="3" alt="'+ title +'"">' + '</td>' +
       '<td><a href="' + viewitem + '" target="_blank">' + title + '</a></td></tr>');
     }
   }

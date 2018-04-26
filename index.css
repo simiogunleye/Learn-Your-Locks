@@ -1,8 +1,89 @@
-html {
+* {
 	box-sizing: border-box;
+	font-family: 'Poiret One', cursive;
+}
+
+body {
+	margin: 35px, 0, 15px, 0;
+	background-color: #ffffee;
 }
 
 ul {
 	list-style: none
 }
 
+#banner {
+	width: 100%;
+	height: 200px;
+	background-color: #8c7b75;
+	text-align: center;
+	margin-top: 50px;
+}
+
+#banner h1 {
+	margin-top: 0;
+	font-size: 50px;
+	position: relative;
+	top: 60px;
+	color: #ffffee;
+}
+
+.Button {
+
+  background-repeat: no-repeat;
+  padding: 1px;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  width: 45px;
+  height: 41px;
+  position: relative;
+  top: 9px;
+  background-color: #ffccbc;
+  border: 2px solid #8c7b75;
+
+}
+
+input[type=text] {
+    text-align: center;
+	font-size: 30px;
+    background-color: #ffccbc;
+    border: 2px solid #8c7b75;
+}
+
+.js-search-bar {
+	margin-top: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+	
+}
+
+
+.js-search-query {
+	text-align: center;
+}
+
+.container {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.description {
+	font-size: 30px;
+	color: black ;
+}
+
+div {
+  display: table-cell;
+  text-align: center;
+  width: 50%;
+  padding: 1rem;
+}
+
+h2 {
+	margin: 0;
+}
+
+.left .right {
+	padding: 15;
+}
