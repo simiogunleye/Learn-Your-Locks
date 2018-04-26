@@ -20,9 +20,10 @@ function getDataYouTubeApi(searchTerm, callback){
 // display youtube data from the api
 
 function displayYouTubeSearchData(data) {
+  console.log(data)
 	const resultsArray = data.items.map((item, index) => 
     `<ul>
-  	<li class="thumbnail">${item.snippet.title}"<br>  	
+  	<li class="thumbnail">${item.snippet.title}"<br><br>  	
   	<iframe title="${item.snippet.title}" width="420" height="315"
 	  src="https://www.youtube.com/embed/${item.id.videoId}">
 	  </iframe></li>
@@ -51,7 +52,7 @@ function submitSearch() {
     url += "&callback=_cb_findItemsByKeywords";
     url += "&REST-PAYLOAD";
     url += `&keywords=${query}`;
-    url += "&paginationInput.entriesPerPage=5";
+    url += "&paginationInput.entriesPerPage=10";
 // Submit the request     
 	s=document.createElement('script'); // create script element
 	s.src= url;
