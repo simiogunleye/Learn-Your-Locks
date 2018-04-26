@@ -20,7 +20,6 @@ function getDataYouTubeApi(searchTerm, callback){
 // display youtube data from the api
 
 function displayYouTubeSearchData(data) {
-  console.log(data)
 	const resultsArray = data.items.map((item, index) => 
     `<ul>
   	<li class="thumbnail">${item.snippet.title}"<br><br>  	
