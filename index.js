@@ -34,15 +34,12 @@ function displayYouTubeSearchData(data) {
 
 function submitSearch() {
 	$(".js-search-bar").submit(function(event) {
-
 		event.preventDefault();
-		 query = $('.js-search-query').val();
-		//$('.js-search-query').val('');
-    $('.description').hide()
+		query = $('.js-search-query').val();
+    $('.description').hide();
 		getDataYouTubeApi(query, displayYouTubeSearchData);
-// Construct the request for ebay finding api with production key
-
- url = "https://svcs.ebay.com/services/search/FindingService/v1";
+    // Construct the request for ebay finding api with production key
+    url = "https://svcs.ebay.com/services/search/FindingService/v1";
     url += "?OPERATION-NAME=findItemsByKeywords";
     url += "&SERVICE-VERSION=1.0.0";
     url += "&SECURITY-APPNAME=SImisolu-learnyou-PRD-8786e9946-4a82e600";
@@ -52,11 +49,10 @@ function submitSearch() {
     url += "&REST-PAYLOAD";
     url += `&keywords=${query}`;
     url += "&paginationInput.entriesPerPage=10";
-// Submit the request     
-	s=document.createElement('script'); // create script element
-	s.src= url;
-	document.body.appendChild(s);
-
+    // Submit the request     
+	  s=document.createElement('script'); // create script element
+	  s.src= url;
+	  document.body.appendChild(s);
 	});
 }
 
