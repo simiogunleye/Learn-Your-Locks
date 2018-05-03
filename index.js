@@ -23,9 +23,10 @@ function displayYouTubeSearchData(data) {
 	const resultsArray = data.items.map((item, index) => 
     `<ul>
   	<li class="thumbnail">${item.snippet.title}"<br><br>  	
-  	<iframe title="${item.snippet.title}" width="420" height="315"
-	  src="https://www.youtube.com/embed/${item.id.videoId}">
-	  </iframe></li>
+  	<div class="intrinsic-container intrinsic-container-16x9">
+    <iframe title="${item.snippet.title}" 
+	  src="https://www.youtube.com/embed/${item.id.videoId}" allowfullscreen>
+	  </iframe></div></li>
   	</ul>`);
   	$('.youtube-results').html(resultsArray);
 }
@@ -57,9 +58,8 @@ function submitSearch() {
 }
 
 // Parse the response from ebay finding api and build an HTML table to display ebay search results
-function _cb_findItemsByKeywords(root) {
- 
- var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
+function _cb_findItemsByKeywords(root) { 
+  var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
   var html = [];
   html.push('<table width="100%" border="0" cellspacing="25" cellpadding="3"><tbody>');
   for (var i = 0; i < items.length; ++i) {
