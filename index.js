@@ -23,10 +23,11 @@ function displayYouTubeSearchData(data) {
 	const resultsArray = data.items.map((item, index) => 
     `<ul>
   	<li class="thumbnail">${item.snippet.title}"<br><br>  	
-  	<div class="intrinsic-container intrinsic-container-16x9">
-    <iframe title="${item.snippet.title}" 
-	  src="https://www.youtube.com/embed/${item.id.videoId}" allowfullscreen>
-	  </iframe></div></li>
+  	<section class="intrinsic-container intrinsic-container-16x9">
+      <iframe title="${item.snippet.title}" width="560" height="315"
+  	  src="https://www.youtube.com/embed/${item.id.videoId}" allowfullscreen>
+  	  </iframe>
+    </section></li>
   	</ul>`);
   	$('.youtube-results').html(resultsArray);
 }
