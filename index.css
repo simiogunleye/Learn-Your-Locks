@@ -155,7 +155,7 @@ a:hover {
 
 	.intrinsic-container {
 	  position: relative;
-	  /*height: 0;*/
+	  height: 0;
 	  overflow: hidden;
 	}
 	 
