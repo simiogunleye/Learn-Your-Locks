@@ -13,7 +13,7 @@ html {
 }
 
 main {
-	padding: 20px;
+	padding: 10px;
 }
 
 .container {
@@ -183,7 +183,7 @@ a:hover {
 	}
 
 	.subtext {
-		display: inline;
+		display: inline-block;
 	}
 }
 	
