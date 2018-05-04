@@ -76,6 +76,7 @@ input[type=text] {
 
 .subtext {
 	font-size: 20px;
+	display: none;
 }
 
 
@@ -176,6 +177,14 @@ a:hover {
 	  height: 100%;
 	}
 
+	.mobile-subtext {
+		font-size: 20px;
+		display: none;
+	}
+
+	.subtext {
+		display: inline;
+	}
 }
 	
 
@@ -188,6 +197,11 @@ a:hover {
 		text-align: center;
 		padding: 20px;
 	}
+
+	.mobile-subtext {
+		font-size: 20px;
+	}
+		
 }
 
 
